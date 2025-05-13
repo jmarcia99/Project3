@@ -1,0 +1,43 @@
+package TestbenchPkg;
+  import RefModelPkg::*;
+  
+  virtual class Base extends Ref_Base;
+    pure virtual function void f_initial_report(); 
+  endclass : Base  
+  
+  virtual class Packet extends Base;
+  	static int pkt_count = 0;
+  endclass : Packet
+  
+  virtual class Sample extends Base;
+  	static int smpl_count = 0;
+  endclass : Sample
+  
+  virtual class Generator extends Base;
+    mailbox generator_mbx;
+    pure virtual task t_generate_pkts (input int num_of_pkts);
+  endclass : Generator 
+
+  virtual class Scoreboard extends Base;
+    static int errors;
+    mailbox driver_mbx;
+    mailbox monitor_mbx;
+    pure virtual task t_check_results;
+    pure virtual task t_run;  
+    pure virtual function void f_final_report;
+  endclass : Scoreboard
+
+  virtual class Driver extends Base;
+    mailbox driver_mbx;
+    mailbox generator_mbx;
+    pure virtual task t_initialize_signals();
+    pure virtual task t_run();
+  endclass : Driver 
+
+  virtual class Monitor extends Base;
+    static int smpl_count = 0;
+    mailbox monitor_mbx;
+    pure virtual task t_run();
+  endclass : Monitor  
+
+endpackage : TestbenchPkg
