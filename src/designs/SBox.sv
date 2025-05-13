@@ -26,10 +26,10 @@ module SBox (AES_Core_Interface.SBox sb_if);
         .clock    		(sb_if.clk),                       
         .rden_a    		(1'b1),                            
         .address_a  	(sb_if.sbox_addr[a]),         
-        .q_a  			  (sb_if.sbox_value[a]),             
+        .q_a  			(sb_if.sbox_value[a]),             
         .rden_b    		(1'b1),                            
         .address_b  	(sb_if.sbox_addr[a+8]),       
-        .q_a  			  (sb_if.sbox_value[a+8])           
+        .q_a  			(sb_if.sbox_value[a+8])           
       );
     end
   endgenerate
