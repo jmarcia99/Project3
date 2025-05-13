@@ -89,8 +89,8 @@ module Key_Expansion (AES_Core_Interface.Key_Exp kx_if);
           			else              			round <= round + 1;
         
         default  :  begin
-          				round = 'x;
-          				prev_key_q = 'x;
+          				round <= 'x;
+          				prev_key_q <= 'x;
         			end
       endcase
     end
