@@ -29,7 +29,7 @@ module SBox (AES_Core_Interface.SBox sb_if);
         .q_a  			(sb_if.sbox_value[a]),             
         .rden_b    		(1'b1),                            
         .address_b  	(sb_if.sbox_addr[a+8]),       
-        .q_a  			(sb_if.sbox_value[a+8])           
+        .q_b  			(sb_if.sbox_value[a+8])           
       );
     end
   endgenerate
