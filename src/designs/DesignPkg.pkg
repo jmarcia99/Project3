@@ -1,0 +1,22 @@
+package DesignPkg;
+
+  enum int {FIRST_WORD, SECOND_WORD, THIRD_WORD, LAST_WORD} word_e;
+  enum int {BYTE0, BYTE1, BYTE2, BYTE3} byte_e;
+  
+  typedef logic [7:0] byte_t;
+  typedef logic [0:3][7:0] word_t;
+  typedef logic [0:15][7:0] sbox_t;
+  typedef logic [0:3][0:3][7:0] key_t;
+  typedef logic [0:3][0:3][7:0] text_t;
+  
+  typedef enum logic [1:0] {
+    						RECV_KEY = 2'b00, 
+    						SEND_KEY = 2'b01,
+                            XX		 = 'x		} kx_fsm_e;
+                            
+  typedef enum logic [1:0] {
+  							RECV_TEXT 			= 2'b00,
+                            ENCRYPT_TEXT		= 2'b01,
+                            XXX					= 'x		} cntrl_fsm_e;
+  
+endpackage : DesignPkg
