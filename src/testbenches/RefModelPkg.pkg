@@ -9,7 +9,7 @@ package RefModelPkg;
     typedef bit [0:3][0:3][7:0] pkt_key_t;
     typedef bit [0:3][0:3][7:0] pkt_text_t;
     
-  	typedef logic [0:3][0:3][7:0] smpl_key_t;  
+    typedef logic [0:3][0:3][7:0] smpl_key_t;  
     typedef logic [0:3][0:3][7:0] smpl_text_t; 
   endclass : Ref_Base  
 
