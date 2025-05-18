@@ -11,6 +11,8 @@
 * The transmitter begins operation upon detecting a valid transmission request (tx_drive) and indicates
 * transmission status via tx_active and tx_done signals.
 */
+
+import DesignPkg::*;
   
 module Uart_Tx #(
   parameter CLKS_PER_BIT = 434
@@ -20,15 +22,8 @@ module Uart_Tx #(
   
   localparam DATA_WIDTH = 8;
   
-  typedef enum logic [1:0] {
-   							IDLE        = 2'b00,
-  							TX_START 	= 2'b01,
-                        	TX_DATA 	= 2'b10,
-  							TX_STOP  	= 2'b11, 
-    						XX			= 'x			} state_e;
-  
-  state_e state;
-  state_e next_state; 
+  uart_tx_fsm_e state;
+  uart_tx_fsm_e next_state; 
   
   logic [31:0] clk_count;
   logic [DATA_WIDTH-1:0] tx_data;
@@ -41,7 +36,7 @@ module Uart_Tx #(
   end
   
   always_comb begin : State_Transitions
-    next_state = XX;
+    next_state = X;
     
     case(state)
       IDLE : 			if (tx_if.tx_drive == 1)			next_state = TX_START;
@@ -56,7 +51,7 @@ module Uart_Tx #(
       TX_STOP :			if (clk_count < CLKS_PER_BIT-1) 	next_state = TX_STOP;
         				else								next_state = IDLE;
       
-      default:												next_state = XX;
+      default:												next_state = X;
       
     endcase
   end 
