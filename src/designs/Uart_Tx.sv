@@ -84,7 +84,7 @@ module Uart_Tx #(
                         tx_if.tx_done     <= '0;
                         clk_count <= '0;
                         bit_index   <= '0;
-          				tx_if.tx_active <= '1;
+          				tx_if.tx_active <= '0;
 
           			if (tx_if.tx_drive == 1) begin
                           tx_if.tx_active <= '1;
