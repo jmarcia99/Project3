@@ -43,7 +43,7 @@ module Uart_Tx #(
     next_state = XX;
     
     case(state)
-      IDLE : 			if (i_Tx_DV == 1)					next_state = TX_START;
+      IDLE : 			if (tx_drive == 1)					next_state = TX_START;
       					else								next_state = IDLE;
         
       TX_START	 : 		if (clk_count < CLKS_PER_BIT-1) 	next_state = TX_START;
@@ -83,7 +83,7 @@ module Uart_Tx #(
                         tx_if.tx_done     <= '0;
                         clk_count <= '0;
                         bit_index   <= '0;
-          				tx_active <= '1;
+          				tx_if.tx_active <= '1;
 
           			if (tx_if.tx_drive == 1) begin
                           tx_if.tx_active <= '1;
