@@ -236,7 +236,7 @@ module Key_Expansion_TB #(parameter DATA_WIDTH = 128);
   logic start_encryption;
   text_t plain_text;
   key_t original_key;
-  text_t encrypted_text;
+  text_t final_text;
   logic finished_encryption;
   
   AES_Core_Interface aes_if (.*);
