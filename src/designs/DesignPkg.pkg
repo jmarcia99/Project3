@@ -10,23 +10,23 @@ package DesignPkg;
   typedef logic [0:3][0:3][7:0] text_t;
   
   typedef enum logic [1:0] {
-    						RECV_KEY = 2'b00, 
-    						SEND_KEY = 2'b01,
+    						            RECV_KEY = 2'b00, 
+    						            SEND_KEY = 2'b01,
                             XX		 = 'x		
                             } kx_fsm_e;
                             
   typedef enum logic [1:0] {
-  							RECV_TEXT 		= 2'b00,
+  							            RECV_TEXT 		= 2'b00,
                             ENCRYPT_TEXT	= 2'b01,
                             XXX				= 'x		
                             } cntrl_fsm_e;
                             
   typedef enum logic [1:0] {
-   							IDLE        = 2'b00,
-  							TX_START 	= 2'b01,
-                        	TX_DATA 	= 2'b10,
-  							TX_STOP  	= 2'b11, 
-    						X			= 'x			
+   							            IDLE        = 2'b00,
+  							            TX_START 	= 2'b01,
+                        	  TX_DATA 	= 2'b10,
+  							            TX_STOP  	= 2'b11, 
+    						            X			= 'x			
                             } uart_tx_fsm_e;
                             
   typedef enum logic [1:0] {
