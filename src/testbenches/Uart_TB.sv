@@ -257,6 +257,7 @@ module Uart_TB ();
   logic clk;
   logic reset_n;
   logic uart_serial_out;
+  logic uart_buffer_full;
   logic text_ready;
   text_t cipher_text;
   
