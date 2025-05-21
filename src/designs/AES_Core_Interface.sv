@@ -2,7 +2,7 @@
 * AES Core Interface
 * Created By: Jordi Marcial Cruz
 * Project: AES-128 Encryption Core
-* Updated: April 18th, 2025
+* Updated: April 29th, 2025
 *
 * Description:
 * This interface defines the signal connections and communication structure 
@@ -15,10 +15,11 @@
 
 import DesignPkg::*;
 
-interface AES_Core_Interface (
+interface AES_Core_Interface ( 
   input  logic clk,                // System clock
   input  logic reset_n,           // Active-low synchronous reset
   input  logic start_encrypt,     // Trigger to start encryption
+  input  logic output_buffer_full, // Input full signal from buffer
   input  text_t provided_text,    // Input plaintext
   input  key_t provided_key,      // Input AES key
 
@@ -35,7 +36,7 @@ interface AES_Core_Interface (
   logic finished_encryption;      // Completion signal
 
   // Interface signal assignments (input/output bridging)
-  assign start_encryption = start_encrypt;
+  assign start_encryption = start_encrypt && output_buffer_full;
   assign plain_text       = provided_text;
   assign original_key     = provided_key;
   assign final_text       = encrypted_text;
@@ -67,7 +68,9 @@ interface AES_Core_Interface (
   // Clocking block for AES controller driver
   clocking aes_drv_cb @(posedge clk);
     default output #1ns;
+    default input #1step;
     output start_encryption, plain_text, original_key;
+    input output_buffer_full;
   endclocking
 
   // Clocking block for AES controller monitor
