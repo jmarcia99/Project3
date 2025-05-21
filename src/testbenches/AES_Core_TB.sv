@@ -265,6 +265,7 @@ module AES_Core_TB
     
   logic clk, reset_n;
   logic start_encrypt;
+  logic output_buffer_full;
   text_t provided_text;
   key_t provided_key;
   
